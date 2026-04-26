@@ -1,0 +1,19 @@
+Tracker de jogos (tipo backlog gamer)
+
+Ideia:
+Usuário organiza jogos em listas:
+
+Jogando
+Zerados
+Quero jogar
+
+Diferencial:
+
+Tempo de gameplay estimado
+Histórico de progresso
+Integração com IGDB
+
+Extras legais:
+
+Gráfico de tempo jogado por mês
+Ranking pessoal
