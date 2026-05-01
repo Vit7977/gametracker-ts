@@ -9,30 +9,30 @@ import PlatformController from "./controller.js";
 
 const router = Router();
 
-router.get("/", PlatformController.getAllPlatforms);
+router.get("/", PlatformController.getAll);
 router.get(
   "/:id",
   validate(getPlatformByIdDTO, "params"),
-  PlatformController.getPlatformById,
+  PlatformController.getById,
 );
 
 router.post(
   "/",
   validate(createPlatformDTO),
-  PlatformController.createPlatform,
+  PlatformController.create,
 );
 
 router.put(
   "/:id",
   validate(getPlatformByIdDTO, "params"),
   validate(updatePlatformDTO),
-  PlatformController.updatePlatform,
+  PlatformController.update,
 );
 
 router.delete(
   "/:id",
   validate(getPlatformByIdDTO, "params"),
-  PlatformController.deletePlatform,
+  PlatformController.delete,
 );
 
 export default router;

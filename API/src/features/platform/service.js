@@ -1,24 +1,24 @@
 import PlatformRepository from "./repository.js";
 
 const PlatformService = {
-  async createPlatform(data) {
-    return await PlatformRepository.createPlatform(data);
+  async create(data) {
+    return await PlatformRepository.create(data);
   },
 
-  async updatePlatform(data) {
-    return await PlatformRepository.updatePlatform(data);
+  async update(data) {
+    return await PlatformRepository.update(data);
   },
 
-  async deletePlatform(id) {
-    return await PlatformRepository.deletePlatform(id);
+  async delete(id) {
+    return await PlatformRepository.delete(id);
   },
 
-  async getPlatformById(id) {
-    return await PlatformRepository.getPlatformById(id);
+  async getAll() {
+    return await PlatformRepository.getAll();
   },
-
-  async getAllPlatforms() {
-    return await PlatformRepository.getAllPlatforms();
+  
+  async getById(id) {
+    return await PlatformRepository.getById(id);
   },
 };
 
