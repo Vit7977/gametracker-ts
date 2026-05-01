@@ -3,7 +3,7 @@ import "dotenv/config";
 
 const PEPPER = process.env.PEPPER;
 
-export const hashPass = async (password: string) => {
+export const hashPass = async (password) => {
   return await argon2.hash(password + PEPPER, {
     type: argon2.argon2id,
     memoryCost: 2 ** 16,
@@ -12,6 +12,6 @@ export const hashPass = async (password: string) => {
   });
 };
 
-export const validatePass = async (hash: string, password: string) => {
+export const validatePass = async (hash, password) => {
   return await argon2.verify(hash, password + PEPPER);
 };

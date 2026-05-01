@@ -1,5 +1,5 @@
-import PlatformRouter from "./features/platform/routes";
-import UserRouter from "./features/user/routes";
+import PlatformRouter from "./features/platform/routes.js";
+import UserRouter from "./features/user/routes.js";
 
 export const routes = [
   {

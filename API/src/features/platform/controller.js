@@ -1,22 +1,21 @@
-import { Response, Request } from "express";
-import * as response from "../../utils/response";
-import PlatformService from "./service";
+import * as response from "../../utils/response.js";
+import PlatformService from "./service.js";
 
 const PlatformController = {
-  async createPlatform(req: Request, res: Response) {
+  async createPlatform(req, res) {
     await PlatformService.createPlatform(req.body);
     return response.created(res, { message: "Plataforma criada com sucesso!" });
   },
 
-  async updatePlatform(req: Request, res: Response) {
-    const id = Number(req.params.id);
-    const dbPlatform = await PlatformService.getPlatformById(id);
+  async updatePlatform(req, res) {
+    const {id} = req.params;
+    const platform = await PlatformService.getPlatformById(id);
 
-    if (!dbPlatform.length) {
+    if (!platform) {
       return response.notFound(res, { message: "Plataforma não encontrada!" });
     }
 
-    const data = { ...dbPlatform[0], ...req.body, id };
+    const data = { ...platform, ...req.body, id };
 
     await PlatformService.updatePlatform(data);
     return response.success(res, {
@@ -24,11 +23,11 @@ const PlatformController = {
     });
   },
 
-  async deletePlatform(req: Request, res: Response) {
-    const id = Number(req.params.id);
-    const dbPlatform = await PlatformService.getPlatformById(id);
+  async deletePlatform(req, res) {
+    const {id} = req.params;
+    const platform = await PlatformService.getPlatformById(id);
 
-    if (!dbPlatform.length) {
+    if (!platform) {
       return response.notFound(res, { message: "Plataforma não encontrada!" });
     }
 
@@ -38,11 +37,11 @@ const PlatformController = {
     });
   },
 
-  async getPlatformById(req: Request, res: Response) {
-    const id = Number(req.params.id);
+  async getPlatformById(req, res) {
+    const {id} = req.params;
     const data = await PlatformService.getPlatformById(id);
 
-    if (!data.length) {
+    if (!data) {
       return response.notFound(res, { message: "Plataforma não encontrada!" });
     }
 
@@ -52,7 +51,7 @@ const PlatformController = {
     });
   },
 
-  async getAllPlatforms(_: Request, res: Response) {
+  async getAllPlatforms(_, res) {
     const data = await PlatformService.getAllPlatforms();
     return response.success(res, {
       message: "Plataformas consultadas com sucesso!",

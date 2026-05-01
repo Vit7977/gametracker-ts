@@ -1,20 +1,19 @@
-import PlatformRepository from "./repository";
-import type { Platform } from "./model";
+import PlatformRepository from "./repository.js";
 
 const PlatformService = {
-  async createPlatform(data: Platform) {
+  async createPlatform(data) {
     return await PlatformRepository.createPlatform(data);
   },
 
-  async updatePlatform(data: Platform) {
+  async updatePlatform(data) {
     return await PlatformRepository.updatePlatform(data);
   },
 
-  async deletePlatform(id: number) {
+  async deletePlatform(id) {
     return await PlatformRepository.deletePlatform(id);
   },
 
-  async getPlatformById(id: number) {
+  async getPlatformById(id) {
     return await PlatformRepository.getPlatformById(id);
   },
 

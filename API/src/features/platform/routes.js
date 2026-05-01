@@ -3,9 +3,9 @@ import {
   createPlatformDTO,
   getPlatformByIdDTO,
   updatePlatformDTO,
-} from "./dto";
-import { validate } from "../../middlewares/validate";
-import PlatformController from "./controller";
+} from "./dto.js";
+import { validate } from "../../middlewares/validate.js";
+import PlatformController from "./controller.js";
 
 const router = Router();
 
