@@ -11,11 +11,10 @@ export const createGameDTO = z.object({
 
   descricao: z.string().trim().optional(),
 
-  data_lancamento: z.coerce
-    .date({
-      invalid_type_error: "A data deve ser uma data válida!",
-    })
-    .max(new Date(), {
+  data_lancamento: z
+    .string()
+    .date({ message: "A data deve ser uma data válida!" })
+    .refine((val) => val <= new Date().toISOString().split("T")[0], {
       message: "A data de lançamento não pode ser no futuro!",
     }),
 

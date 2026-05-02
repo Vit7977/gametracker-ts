@@ -1,3 +1,4 @@
+-- DROP DATABASE GameTracker;
 CREATE DATABASE GameTracker;
 USE GameTracker;
 
@@ -50,16 +51,14 @@ DROP TABLE IF EXISTS user_game_platform;
 CREATE TABLE IF NOT EXISTS user_game_platform(
     id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     user INT UNSIGNED NOT NULL,
-    game INT UNSIGNED NOT NULL,
-    platform INT UNSIGNED NOT NULL,
+    game_platform INT UNSIGNED NOT NULL,
     status ENUM("lista de desejos", "jogando", "zerado", "100%", "replay") NOT NULL DEFAULT "lista de desejos",
     nota TINYINT UNSIGNED CHECK (nota BETWEEN 1 AND 10),
     ranking SMALLINT UNSIGNED,
     adicionado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    UNIQUE KEY uq_user_game_platform (user, game, platform),
+    UNIQUE KEY uq_user_game_platform (user, game_platform),
     FOREIGN KEY (user) REFERENCES user(id),
-    FOREIGN KEY (game) REFERENCES game(id),
-    FOREIGN KEY (platform) REFERENCES platform(id)
+    FOREIGN KEY (game_platform) REFERENCES game_platform(id)
 );
 
 DROP TABLE IF EXISTS session;
