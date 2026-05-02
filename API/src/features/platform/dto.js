@@ -14,6 +14,6 @@ export const createPlatformDTO = z.object({
 
 export const updatePlatformDTO = createPlatformDTO.partial();
 
-export const getPlatformByIdDTO = z.object({
-  id: z.coerce.number().int().positive({ message: "ID inválido !" }),
+export const idDTO = z.object({
+  id: z.coerce.number().int().positive({ message: "ID inválido!" }),
 });

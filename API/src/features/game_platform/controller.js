@@ -1,12 +1,12 @@
 import * as response from "../../utils/response.js";
-import PlatformService from "./service.js";
+import GamePlatformService from "./service.js";
 
-const PlatformController = {
+const GamePlatformController = {
   async create(req, res) {
     try {
-      await PlatformService.create(req.body);
+      await GamePlatformService.create(req.body);
       return response.created(res, {
-        message: "Plataforma criada com sucesso!",
+        message: "Jogo em plataform criado com sucesso!",
       });
     } catch (error) {
       return response.error(res, {
@@ -19,19 +19,18 @@ const PlatformController = {
   async update(req, res) {
     try {
       const { id } = req.params;
-      const platform = await PlatformService.getById(id);
+      const gameP = await GamePlatformService.getById(id);
 
-      if (!platform) {
+      if (!gameP) {
         return response.notFound(res, {
-          message: "Plataforma não encontrada!",
+          message: "Jogo em plataforma não encontrado!",
         });
       }
 
-      const data = { ...platform, ...req.body, id };
-
-      await PlatformService.update(data);
+      const data = { ...gameP, ...req.body, id };
+      await GamePlatformService.update(data);
       return response.success(res, {
-        message: "Plataforma atualizada com sucesso!",
+        message: "Jogo em plataforma atualizado com sucesso!",
       });
     } catch (error) {
       return response.error(res, {
@@ -44,39 +43,17 @@ const PlatformController = {
   async delete(req, res) {
     try {
       const { id } = req.params;
-      const platform = await PlatformService.getById(id);
+      const gameP = await GamePlatformService.getById(id);
 
-      if (!platform) {
+      if (!gameP) {
         return response.notFound(res, {
-          message: "Plataforma não encontrada!",
+          message: "Jogo em plataforma não encontrado!",
         });
       }
 
-      await PlatformService.delete(id);
+      await GamePlatformService.delete(id);
       return response.success(res, {
-        message: "Plataforma deletada com sucesso!",
-      });
-    } catch (error) {
-      return response.error(res, {
-        message: "Erro interno!",
-        error: error.message,
-      });
-    }
-  },
-
-  async getAll(_, res) {
-    try {
-      const data = await PlatformService.getAll();
-
-      if (!data.length) {
-        return response.notFound(res, {
-          message: "Plataformas não encontradas!",
-        });
-      }
-
-      return response.success(res, {
-        message: "Plataformas consultadas com sucesso!",
-        data,
+        message: "Jogo em plataforma deletado com sucesso!",
       });
     } catch (error) {
       return response.error(res, {
@@ -89,17 +66,39 @@ const PlatformController = {
   async getById(req, res) {
     try {
       const { id } = req.params;
-      const data = await PlatformService.getById(id);
+      const gameP = await GamePlatformService.getById(id);
 
-      if (!data) {
+      if (!gameP) {
         return response.notFound(res, {
-          message: "Plataforma não encontrada!",
+          message: "Jogo em plataforma não encontrado!",
         });
       }
 
       return response.success(res, {
-        message: "Plataforma consultada com sucesso!",
-        data,
+        message: "Jogo em plataforma consultado com sucesso!",
+        data: gameP,
+      });
+    } catch (error) {
+      return response.error(res, {
+        message: "Erro interno!",
+        error: error.message,
+      });
+    }
+  },
+
+  async getAll(_, res) {
+    try {
+      const gameP = await GamePlatformService.getAll();
+
+      if (!gameP.length) {
+        return response.notFound(res, {
+          message: "Jogos em plataforma não encontrados!",
+        });
+      }
+
+      return response.success(res, {
+        message: "Jogos em plataforma consultados com sucesso!",
+        data: gameP,
       });
     } catch (error) {
       return response.error(res, {
@@ -110,4 +109,4 @@ const PlatformController = {
   },
 };
 
-export default PlatformController;
+export default GamePlatformController;

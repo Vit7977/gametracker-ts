@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS user_game_platform(
     user INT UNSIGNED NOT NULL,
     game INT UNSIGNED NOT NULL,
     platform INT UNSIGNED NOT NULL,
-    status ENUM("lista_de_desejos", "jogando", "zerado", "100%", "replay") NOT NULL DEFAULT "lista_de_desejos",
+    status ENUM("lista de desejos", "jogando", "zerado", "100%", "replay") NOT NULL DEFAULT "lista de desejos",
     nota TINYINT UNSIGNED CHECK (nota BETWEEN 1 AND 10),
     ranking SMALLINT UNSIGNED,
     adicionado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,

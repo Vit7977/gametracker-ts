@@ -3,59 +3,94 @@ import GameService from "./service.js";
 
 const GameController = {
   async create(req, res) {
-    await GameService.create(req.body);
-    return response.created(res, { message: "Jogo criado com sucesso!" });
+    try {
+      await GameService.create(req.body);
+      return response.created(res, { message: "Jogo criado com sucesso!" });
+    } catch (error) {
+      return response.error(res, {
+        message: "Erro interno!",
+        error: error.message,
+      });
+    }
   },
 
   async update(req, res) {
-    const { id } = req.params;
-    const game = await GameService.getById(id);
+    try {
+      const { id } = req.params;
+      const game = await GameService.getById(id);
 
-    if (!game) {
-      return response.notFound(res, { message: "Jogo não encontrado!" });
+      if (!game) {
+        return response.notFound(res, { message: "Jogo não encontrado!" });
+      }
+
+      const data = { ...game, ...req.body, id };
+      await GameService.update(data);
+      return response.success(res, { message: "Jogo atualizado com sucesso!" });
+    } catch (error) {
+      return response.error(res, {
+        message: "Erro interno!",
+        error: error.message,
+      });
     }
-
-    const data = { ...game, ...req.body, id };
-    await GameService.update(data);
-    return response.success(res, { message: "Jogo atualizado com sucesso!" });
   },
 
   async delete(req, res) {
-    const { id } = req.params;
-    const game = await GameService.getById(id);
+    try {
+      const { id } = req.params;
+      const game = await GameService.getById(id);
 
-    if (!game) {
-      return response.notFound(res, { message: "Jogo não encontrado!" });
+      if (!game) {
+        return response.notFound(res, { message: "Jogo não encontrado!" });
+      }
+
+      await GameService.delete(id);
+      return response.success(res, { message: "Jogo deletado com sucesso!" });
+    } catch (error) {
+      return response.error(res, {
+        message: "Erro interno!",
+        error: error.message,
+      });
     }
-
-    await GameService.delete(id);
-    return response.success(res, { message: "Jogo deletado com sucesso!" });
   },
 
   async getAll(_, res) {
-    const data = await GameService.getAll();
+    try {
+      const data = await GameService.getAll();
 
-    if (!data.length) {
-      return response.notFound(res, { message: "Jogos não encontrados!" });
+      if (!data.length) {
+        return response.notFound(res, { message: "Jogos não encontrados!" });
+      }
+
+      return response.success(res, {
+        message: "Jogos consultados com sucesso!",
+        data,
+      });
+    } catch (error) {
+      return response.error(res, {
+        message: "Erro interno!",
+        error: error.message,
+      });
     }
-
-    return response.success(res, {
-      message: "Jogos consultados com sucesso!",
-      data,
-    });
   },
   async getById(req, res) {
-    const { id } = req.params;
-    const data = await GameService.getById(id);
+    try {
+      const { id } = req.params;
+      const data = await GameService.getById(id);
 
-    if (!data) {
-      return response.notFound(res, { message: "Jogo não encontrado!" });
+      if (!data) {
+        return response.notFound(res, { message: "Jogo não encontrado!" });
+      }
+
+      return response.success(res, {
+        message: "Jogo consultado com sucesso!",
+        data,
+      });
+    } catch (error) {
+      return response.error(res, {
+        message: "Erro interno!",
+        error: error.message,
+      });
     }
-
-    return response.success(res, {
-      message: "Jogo consultado com sucesso!",
-      data,
-    });
   },
 };
 
