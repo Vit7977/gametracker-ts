@@ -3,6 +3,7 @@ import UserRouter from "./features/user/routes.js";
 import GameRouter from "./features/game/routes.js";
 import GamePlatformRouter from "./features/game_platform/routes.js";
 import UGPRouter from "./features/user_game_platform/routes.js";
+import SessionRouter from "./features/session/routes.js";
 
 export const routes = [
   {
@@ -23,6 +24,10 @@ export const routes = [
   },
   {
     router: UGPRouter,
-    path: "/api/user.game.platform"
-  }
+    path: "/api/user.game.platform",
+  },
+  {
+    router: SessionRouter,
+    path: "/api/session",
+  },
 ];

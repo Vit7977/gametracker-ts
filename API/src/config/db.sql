@@ -43,7 +43,7 @@ CREATE TABLE IF NOT EXISTS user(
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(150) NOT NULL,
     senha VARCHAR(255) NOT NULL,
-    avatar VARCHAR(255),
+    avatar VARCHAR(255) NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -53,8 +53,8 @@ CREATE TABLE IF NOT EXISTS user_game_platform(
     user INT UNSIGNED NOT NULL,
     game_platform INT UNSIGNED NOT NULL,
     status ENUM("lista de desejos", "jogando", "zerado", "100%", "replay") NOT NULL DEFAULT "lista de desejos",
-    nota TINYINT UNSIGNED CHECK (nota BETWEEN 1 AND 10),
-    ranking SMALLINT UNSIGNED,
+    nota TINYINT UNSIGNED CHECK (nota BETWEEN 1 AND 10) NULL,
+    ranking SMALLINT UNSIGNED NULL,
     adicionado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uq_user_game_platform (user, game_platform),
     FOREIGN KEY (user) REFERENCES user(id),
@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS session(
     user_game_platform INT UNSIGNED NOT NULL,
     data DATE NOT NULL,
     duracao_min SMALLINT UNSIGNED NOT NULL,
-    progresso TINYINT UNSIGNED CHECK (progresso BETWEEN 0 AND 100),
-    comentario TEXT,
+    progresso TINYINT UNSIGNED CHECK (progresso BETWEEN 0 AND 100) DEFAULT 0,
+    comentario TEXT NULL,
     FOREIGN KEY (user_game_platform) REFERENCES user_game_platform(id)
 );
