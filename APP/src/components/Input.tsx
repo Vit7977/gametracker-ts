@@ -32,7 +32,7 @@ function Input({
           className={`w-full outline-none border pl-2 p-1 shadow-xs shadow-black/50 rounded-lg transition-all duration-300 ${
             active
               ? "border-sky-800 text-black bg-white"
-              : "border-gray-400 text-gray-400 bg-black/10"
+              : "border-gray-400 text-gray-400 bg-gray-300"
           }`}
           type={resolvedType}
           required={required}

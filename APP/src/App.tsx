@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Cadastrar from "./pages/Cadastrar";
 import NotFound from "./pages/NotFound";
 import NavBar from "./components/NavBar";
+import Login from "./pages/Login";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/cadastrar" element={<Cadastrar />} />
+        <Route path="/login" element={<Login />} />
       </Routes>
     </BrowserRouter>
   );
