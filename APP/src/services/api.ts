@@ -7,7 +7,7 @@ export const api = axios.create({
 api.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.error("Erro na API:", error.reponse?.data || error.message);
+    console.error("Erro na API:", error.response?.data || error.message);
     return Promise.reject(error);
   },
 );

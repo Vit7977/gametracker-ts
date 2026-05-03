@@ -1,4 +1,4 @@
--- DROP DATABASE GameTracker;
+--DROP DATABASE GameTracker;
 CREATE DATABASE GameTracker;
 USE GameTracker;
 
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS user_game_platform(
     ranking SMALLINT UNSIGNED NULL,
     adicionado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     UNIQUE KEY uq_user_game_platform (user, game_platform),
-    FOREIGN KEY (user) REFERENCES user(id),
+    FOREIGN KEY (user) REFERENCES user(id) ON DELETE CASCADE,
     FOREIGN KEY (game_platform) REFERENCES game_platform(id)
 );
 
