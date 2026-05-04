@@ -21,7 +21,7 @@ function Login() {
     if (!result?.error && result.data != null) {
       localStorage.setItem("token", result.data);
       setTimeout(() => {
-        navigate("/perfil");
+        navigate("/home");
       }, 1000);
     } else {
       setTimeout(() => {
@@ -31,7 +31,7 @@ function Login() {
   };
 
   return (
-    <div className="h-screen bg-zinc-800 flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-zinc-800 flex flex-col justify-center items-center">
       {error ? (
         <AlertContainer
           error={true}

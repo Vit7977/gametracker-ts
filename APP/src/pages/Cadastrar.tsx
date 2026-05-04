@@ -34,7 +34,7 @@ function Cadastrar() {
   };
 
   return (
-    <div className="h-screen bg-zinc-800 flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-zinc-800 flex flex-col justify-center items-center">
       {error ? (
         <AlertContainer
           error={true}

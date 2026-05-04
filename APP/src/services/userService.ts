@@ -17,3 +17,12 @@ export const login = async (email: string, senha: string) => {
   });
   return response.data.data.token;
 };
+
+export const validateToken = async (token: string) => {
+  const response = await api.get(`/user/auth/validate`, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
