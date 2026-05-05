@@ -3,7 +3,7 @@ export interface Game {
   titulo: string;
   capa: string;
   descricao?: string;
-  data_lancamento: Date;
+  data_lancamento: string;
   genero?: string;
   tempo_estimado?: number;
 }

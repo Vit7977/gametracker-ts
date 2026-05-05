@@ -9,6 +9,7 @@ import NavBar from "./components/NavBar";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Jogos from "./pages/Jogos";
+import CadastrarJogo from "./pages/CadastrarJogo";
 
 function App() {
   const { isAuth, loading } = useAuth();
@@ -75,6 +76,8 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+        <Route path="/admin/cadastrar/jogo" element={<CadastrarJogo />} />
       </Routes>
     </BrowserRouter>
   );

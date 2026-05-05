@@ -20,7 +20,7 @@ const UserController = {
       const { id } = req.params;
       const user = await UserService.getById(id);
 
-      if (!user[0]) {
+      if (!user) {
         return response.notFound(res, { message: "Usuário não encontrado!" });
       }
 

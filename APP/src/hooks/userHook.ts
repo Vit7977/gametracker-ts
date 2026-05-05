@@ -2,14 +2,8 @@ import { useState } from "react";
 import { createUser, login } from "../services/userService";
 import type { User } from "../types/User";
 import type { ApiError, HookResult } from "../types/HookTypes";
+import { extractError } from "../utils/extractError";
 
-const extractError = (err: unknown): ApiError | null => {
-  if (err && typeof err === "object" && "response" in err) {
-    const axiosErr = err as { response?: { data?: ApiError } };
-    return axiosErr.response?.data ?? null;
-  }
-  return null;
-};
 
 export const useCreateUser = () => {
   const [loading, setLoading] = useState(false);
@@ -22,8 +16,8 @@ export const useCreateUser = () => {
     try {
       await createUser(user);
       return { data: null, error: null };
-    } catch (err: any) {
-      const errorData = extractError(err);
+    } catch (error: any) {
+      const errorData = extractError(error);
       setError(errorData);
       return { data: null, error: errorData };
     } finally {
@@ -48,8 +42,8 @@ export const useLogin = () => {
     try {
       const token = await login(email, senha);
       return { data: token, error: null };
-    } catch (err) {
-      const errorData = extractError(err);
+    } catch (error) {
+      const errorData = extractError(error);
       setError(errorData);
       return { data: null, error: errorData };
     } finally {

@@ -15,7 +15,9 @@ const useAuth = () => {
     }
 
     validateToken(token)
-      .then(() => setIsAuth(true))
+      .then(() => {
+        setIsAuth(true);
+      })
       .catch(() => {
         setIsAuth(false);
         localStorage.removeItem("token");

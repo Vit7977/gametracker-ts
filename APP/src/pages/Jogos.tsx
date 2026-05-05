@@ -1,9 +1,15 @@
 import GameCard from "../components/GameCard";
+import { useColumnCount } from "../hooks/useColumnCount";
 import { useGames } from "../hooks/gameHooks";
 import { IoMdRefresh } from "react-icons/io";
 
 function Jogos() {
   const { games, loading, refresh } = useGames();
+  const numCols = useColumnCount();
+
+  const columns = Array.from({ length: numCols }, (_, i) =>
+    games.filter((_, index) => index % numCols === i)
+  );
 
   if (loading)
     return (
@@ -25,14 +31,14 @@ function Jogos() {
           <IoMdRefresh className="text-4xl text-white" />
         </button>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 px-24 items-start">
-        {games.length ? (
-          games.map((item) => {
-            return <GameCard game={item} key={item.id} />;
-          })
-        ) : (
-          <div className="text-white text-2xl">Não tem jogos cadastrados!</div>
-        )}
+      <div className="flex gap-4 px-40 items-start w-full">
+        {columns.map((col, colIndex) => (
+          <div key={colIndex} className="flex flex-col gap-4 flex-1">
+            {col.map((item) => (
+              <GameCard game={item} key={item.id} />
+            ))}
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -4,6 +4,8 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 interface InputProps {
   label: string;
   type?: string;
+  min?: number;
+  max?: number;
   required?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
@@ -11,6 +13,8 @@ interface InputProps {
 function Input({
   label,
   type = "text",
+  min,
+  max,
   required = false,
   onChange,
 }: InputProps) {
@@ -36,6 +40,8 @@ function Input({
           }`}
           type={resolvedType}
           required={required}
+          min={min}
+          max={max}
           onFocus={() => setActive(true)}
           onBlur={() => setActive(false)}
           onChange={onChange}

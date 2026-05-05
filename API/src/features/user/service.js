@@ -27,7 +27,13 @@ const UserService = {
     const expiresIn = process.env.JWT_EXPIRES;
 
     const token = jwt.sign(
-      { userId: user.id, userName: user.nome, userAvatar: user.avatar },
+      {
+        userId: user.id,
+        userName: user.nome,
+        userEmail: user.email,
+        userAvatar: user.avatar,
+        createdAt: user.created_at,
+      },
       secret,
       {
         expiresIn,

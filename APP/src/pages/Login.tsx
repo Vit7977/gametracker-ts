@@ -21,7 +21,7 @@ function Login() {
     if (!result?.error && result.data != null) {
       localStorage.setItem("token", result.data);
       setTimeout(() => {
-        navigate("/home");
+        return navigate("/home");
       }, 1000);
     } else {
       setTimeout(() => {

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { Game } from "../types/Game";
+import GenderContainer from "./GenderContainer";
 
 interface GameCardProps {
   game: Game;
@@ -11,12 +12,17 @@ function GameCard({ game }: GameCardProps) {
 
   return (
     <div
-      className="bg-gray-400 max-w-64 m-2 rounded-lg flex flex-col items-center justify-center text-center shadow-lg border border-gray-400
+      className="mb-4 break-inside-avoid bg-gray-400 max-w-64 rounded-lg flex flex-col items-center justify-center text-center shadow-lg border border-gray-400
     transition-all duration-300 overflow-hidden 
     hover:bg-white hover:scale-105 hover:shadow-sky-500/50"
-      onMouseEnter={() => setHover(true)}
-      onMouseLeave={() => setHover(false)}
-      onClick={() => setVisibleInfo(!visibleInfo)}
+      onMouseEnter={() => {
+        setHover(true);
+        setVisibleInfo(true);
+      }}
+      onMouseLeave={() => {
+        setHover(false);
+        setVisibleInfo(false);
+      }}
     >
       <img
         className={`cursor-pointer w-full object-cover aspect-[3/4] ${visibleInfo ? "rounded-tr-lg rounded-tl-lg" : "rounded-lg"}`}

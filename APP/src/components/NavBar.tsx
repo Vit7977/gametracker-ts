@@ -3,6 +3,8 @@ import { IoLogoGameControllerB } from "react-icons/io";
 import { CgProfile } from "react-icons/cg";
 
 function NavBar() {
+  const { userAvatar } = JSON.parse(localStorage.getItem("user") ?? "{}");
+
   return (
     <nav className="fixed flex justify-around bg-zinc-900 w-screen p-3">
       <a
